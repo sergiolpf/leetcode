@@ -54,6 +54,25 @@ func pivotIndex2(nums []int) int {
 	return -1
 
 }
+
+func pivotIndex3(nums []int) int {
+	totalSum := 0
+
+	for _, num := range nums {
+		totalSum += num
+	}
+
+	leftSum := 0
+
+	for i, num := range nums {
+		if leftSum == totalSum-leftSum-num {
+			return i
+		}
+		leftSum += num
+	}
+
+	return -1
+}
 func main() {
 	fmt.Println(pivotIndex([]int{}))
 }
