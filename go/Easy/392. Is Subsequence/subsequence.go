@@ -5,15 +5,20 @@ import "fmt"
 func isSubsequence(s, t string) bool {
 	r := 0
 	l := 0
-	for l < len(s) && r < len(t) {
+	for {
+		if l >= len(s) {
+			return true
+		}
+		if r >= len(t) {
+			return false
+		}
+
 		if s[l] == t[r] {
 			l++
 		}
 		r++
 
 	}
-
-	return !(l < len(s))
 }
 
 func main() {
