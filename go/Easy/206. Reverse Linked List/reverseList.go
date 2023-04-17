@@ -7,6 +7,32 @@ type ListNode struct {
 	Next *ListNode
 }
 
+func reverseList3(head *ListNode) *ListNode {
+
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	reversedHead := reverseList3(head.Next)
+	head.Next.Next = head
+	head.Next = nil
+	return reversedHead
+}
+
+func reverseList2(head *ListNode) *ListNode {
+	var previous *ListNode
+	current := head
+
+	for current != nil {
+		next := current.Next
+		current.Next = previous
+		previous = current
+		current = next
+	}
+
+	return previous
+}
+
 func reverseList(head *ListNode) *ListNode {
 	reversedList := ListNode{}
 	dummy := &reversedList
@@ -49,4 +75,6 @@ func reverseList(head *ListNode) *ListNode {
 
 func main() {
 	fmt.Printf("%v", reverseList(&ListNode{}))
+	fmt.Printf("%v", reverseList2(&ListNode{}))
+	fmt.Printf("%v", reverseList3(&ListNode{}))
 }
